@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessible Form UI</title>
+  <link rel="stylesheet" href="Style.css">
+</head>
+<Style>
+  * {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container */
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Title */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Progress Bar */
+.progress-container {
+  background: #ddd;
+  height: 8px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  width: 50%; /* static */
+  height: 100%;
+  background: #4CAF50;
+  border-radius: 5px;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Focus state (ACCESSIBILITY) */
+input:focus {
+  outline: 3px solid #4CAF50;
+  border-color: #4CAF50;
+}
+
+/* Error message */
+.error {
+  color: red;
+  font-size: 12px;
+  display: none; /* placeholder */
+}
+
+/* Password wrapper */
+.password-wrapper {
+  display: flex;
+}
+
+.password-wrapper input {
+  flex: 1;
+}
+
+.toggle-btn {
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+/* Checklist */
+.checklist {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 15px 0;
+  font-size: 14px;
+}
+
+.checklist ul {
+  padding-left: 20px;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #45a049;
+}
+
+/* Button focus */
+button:focus {
+  outline: 3px solid #4CAF50;
+}
+</Style>
+
+<body>
+
+<div class="container">
+  <form class="form" aria-labelledby="form-title">
+
+    <h2 id="form-title">Create Account</h2>
+
+    <!-- Progress Bar -->
+    <div class="progress-container" aria-hidden="true">
+      <div class="progress-bar"></div>
+    </div>
+
+    <!-- Full Name -->
+    <div class="form-group">
+      <label for="fullname">Full Name</label>
+      <input 
+        type="text" 
+        id="fullname" 
+        name="fullname" 
+        required 
+        aria-required="true"
+      >
+      <small class="error">Error message here</small>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        required 
+        aria-required="true"
+      >
+      <small class="error">Error message here</small>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+
+      <div class="password-wrapper">
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          required 
+          aria-required="true"
+        >
+        <button 
+          type="button" 
+          class="toggle-btn" 
+          aria-label="Toggle password visibility"
+        >
+          👁
+        </button>
+      </div>
+
+      <small class="error">Error message here</small>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="form-group">
+      <label for="confirm">Confirm Password</label>
+      <input 
+        type="password" 
+        id="confirm" 
+        name="confirm" 
+        required 
+        aria-required="true"
+      >
+      <small class="error">Error message here</small>
+    </div>
+
+    <!-- Checklist -->
+    <div class="checklist">
+      <p>Password must contain:</p>
+      <ul>
+        <li>✔ At least 8 characters</li>
+        <li>✔ One uppercase letter</li>
+        <li>✔ One number</li>
+      </ul>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="submit-btn">
+      Create Account
+    </button>
+
+  </form>
+</div>
+<script>
+  // عناصر
+const passwordInput = document.getElementById("password");
+const confirmInput = document.getElementById("confirm");
+const toggleBtn = document.querySelector(".toggle-btn");
+const progressBar = document.querySelector(".progress-bar");
+
+const nameInput = document.getElementById("fullname");
+const emailInput = document.getElementById("email");
+
+// Checklist items
+const checklistItems = document.querySelectorAll(".checklist li");
+
+// Toggle password visibility
+toggleBtn.addEventListener("click", () => {
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    toggleBtn.setAttribute("aria-label", "Password is visible");
+  } else {
+    passwordInput.type = "password";
+    toggleBtn.setAttribute("aria-label", "Password is hidden");
+  }
+});
+
+// Validation function
+function validateForm() {
+  let progress = 0;
+
+  // Name
+  if (nameInput.value.trim().length > 2) {
+    progress += 25;
+  }
+
+  // Email
+  if (emailInput.value.includes("@")) {
+    progress += 25;
+  }
+
+  // Password rules
+  const password = passwordInput.value;
+
+  const hasLength = password.length >= 8;
+  const hasUpper = /[A-Z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+
+  // Update checklist UI
+  checklistItems[0].style.color = hasLength ? "green" : "black";
+  checklistItems[1].style.color = hasUpper ? "green" : "black";
+  checklistItems[2].style.color = hasNumber ? "green" : "black";
+
+  if (hasLength && hasUpper && hasNumber) {
+    progress += 25;
+  }
+
+  // Confirm password
+  if (password && password === confirmInput.value) {
+    progress += 25;
+  }
+
+  // Update progress bar
+  progressBar.style.width = progress + "%";
+}
+
+// Run validation on input
+document.querySelectorAll("input").forEach(input => {
+  input.addEventListener("input", validateForm);
+});
+</script>
+
+</body>
+</html>

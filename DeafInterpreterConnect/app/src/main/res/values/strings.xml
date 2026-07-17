@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DeafConnect Interpreter</string>
+    <string name="urgent_call">URGENT\nINTERPRETER CALL</string>
+    <string name="call_history">Call History</string>
+    <string name="choose_place">Choose where you need an interpreter:</string>
+    <string name="cancel_request">Cancel</string>
+    <string name="end_call">End Call</string>
+</resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/background_light">
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_place"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_dark"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp" />
+
+    <ProgressBar
+        android:id="@+id/progressConnecting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <LinearLayout
+        android:id="@+id/placeButtonsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnPlaceHospital"
+            style="@style/PlaceButton"
+            android:text="🏥  Hospital" />
+
+        <Button
+            android:id="@+id/btnPlacePolice"
+            style="@style/PlaceButton"
+            android:text="🚓  Police Station" />
+
+        <Button
+            android:id="@+id/btnPlaceGovernment"
+            style="@style/PlaceButton"
+            android:text="🏛  Government Office" />
+
+        <Button
+            android:id="@+id/btnPlaceBank"
+            style="@style/PlaceButton"
+            android:text="🏦  Bank" />
+
+        <Button
+            android:id="@+id/btnPlaceOther"
+            style="@style/PlaceButton"
+            android:text="📍  Other" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCancelRequest"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/cancel_request"
+        android:backgroundTint="@color/urgent_red"
+        android:textColor="@color/text_light" />
+
+</LinearLayout>

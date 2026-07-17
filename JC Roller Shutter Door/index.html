@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JC Roller Shutter Worx | Garage & Roller Door Specialists</title>
+    <meta name="description" content="Affordable installations, services and repairs for roller shutters, garage doors and trellidoors. No motor repairs. Free quotations." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --font-barlow: 'Barlow', sans-serif;
+            --font-space: 'Space Grotesk', sans-serif;
+            --color-green-950: #052e16;
+            --color-green-900: #064e3b;
+            --color-green-800: #065f46;
+            --color-green-700: #047857;
+            --color-green-600: #059669;
+            --color-green-500: #10b981;
+            --color-green-400: #34d399;
+            --color-green-300: #6ee7b7;
+            --color-green-200: #a7f3d0;
+            --color-green-100: #d1fae5;
+            --color-green-50: #ecfdf5;
+            --color-black-950: #030712;
+            --color-black-900: #111827;
+            --color-black-800: #1f2937;
+            --color-black-700: #374151;
+            --color-black-600: #4b5563;
+            --color-black-500: #6b7280;
+            --color-black-400: #9ca3af;
+            --color-black-300: #d1d5db;
+            --color-black-200: #e5e7eb;
+            --color-black-100: #f3f4f6;
+            --color-black-50: #f9fafb;
+            --color-blue-950: #172554;
+            --color-blue-900: #1e3a8a;
+            --color-blue-800: #1e40af;
+            --color-blue-700: #1d4ed8;
+            --color-blue-600: #2563eb;
+            --color-blue-500: #3b82f6;
+            --color-blue-400: #60a5fa;
+            --color-blue-300: #93c5fd;
+            --color-blue-200: #bfdbfe;
+            --color-blue-100: #dbeafe;
+            --color-blue-50: #eff6ff;
+        }
+    </style>
+    <style>
+        .project-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .project-photo {
+            flex: 0 0 100%;
+            min-width: 100%;
+        }
+        html { scroll-behavior: smooth; }
+
+        /* Mobile menu animation */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+
+        /* Smooth section transitions */
+        section {
+            transition: opacity 0.3s ease;
+        }
+
+        /* Card hover lift */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Button press effect */
+        .btn-press:active {
+            transform: scale(0.98);
+        }
+
+        /* Image loading placeholder */
+        img {
+            background-color: #1f2937;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body class="font-barlow text-black-700 bg-black-950 antialiased overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black-950/95 backdrop-blur-md border-b border-black-800 shadow-lg shadow-green-900/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-14 sm:h-16 lg:h-20">
+                <!-- Brand -->
+                <a href="#" class="flex items-center gap-2 sm:gap-3 group shrink-0">
+                    <span class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-green-600 text-white font-space font-bold text-sm sm:text-lg group-hover:bg-green-500 transition-colors duration-300" aria-hidden="true">JC</span>
+                    <span class="font-space font-bold text-white text-xs sm:text-sm lg:text-base tracking-tight uppercase hidden xs:block">Roller Shutter Worx</span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-6 lg:gap-8" aria-label="Main navigation">
+                    <a href="#services" class="text-sm font-semibold text-black-300 hover:text-green-400 transition-colors duration-200">Services</a>
+                    <a href="#projects" class="text-sm font-semibold text-black-300 hover:text-green-400 transition-colors duration-200">Projects</a>
+                    <a href="#pricing" class="text-sm font-semibold text-black-300 hover:text-green-400 transition-colors duration-200">Pricing</a>
+                    <a href="#contact" class="text-sm font-semibold text-black-300 hover:text-green-400 transition-colors duration-200">Contact</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <a href="#contact" class="hidden md:inline-flex items-center px-4 lg:px-5 py-2 lg:py-2.5 rounded-lg border-2 border-green-600 text-green-400 font-semibold text-xs lg:text-sm hover:bg-green-600 hover:text-white transition-all duration-300 btn-press">
+                    Get Free Quote
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-black-300 hover:bg-black-800 transition-colors btn-press" aria-label="Toggle menu" aria-expanded="false">
+                    <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden border-t border-black-800 bg-black-950">
+            <div class="px-4 py-3 space-y-1">
+                <a href="#services" class="block px-3 py-3 rounded-lg text-black-300 font-semibold hover:bg-black-800 hover:text-green-400 transition-colors text-sm">Services</a>
+                <a href="#projects" class="block px-3 py-3 rounded-lg text-black-300 font-semibold hover:bg-black-800 hover:text-green-400 transition-colors text-sm">Projects</a>
+                <a href="#pricing" class="block px-3 py-3 rounded-lg text-black-300 font-semibold hover:bg-black-800 hover:text-green-400 transition-colors text-sm">Pricing</a>
+                <a href="#contact" class="block px-3 py-3 rounded-lg text-black-300 font-semibold hover:bg-black-800 hover:text-green-400 transition-colors text-sm">Contact</a>
+                <a href="#contact" class="block w-full text-center px-5 py-3 rounded-lg bg-green-600 text-white font-semibold hover:bg-green-500 transition-colors mt-2 text-sm">Get Free Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-14 sm:h-16 lg:h-20"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden bg-black-950">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, #10b981 1px, transparent 0); background-size: 40px 40px;"></div>
+            </div>
+            <!-- Green accent glow -->
+            <div class="absolute top-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-green-600/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-48 sm:w-72 h-48 sm:h-72 bg-blue-600/10 rounded-full blur-3xl"></div>
+
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
+                <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+                    <!-- Left Content -->
+                    <div class="space-y-6 sm:space-y-8 text-center lg:text-left">
+                        <div>
+                            <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-900/50 text-green-400 text-xs font-bold uppercase tracking-wider mb-4 border border-green-700/50">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                                Trusted Local Service
+                            </p>
+                            <h1 class="font-space font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
+                                Secure, reliable garage and roller door solutions.
+                            </h1>
+                        </div>
+
+                        <p class="text-base sm:text-lg lg:text-xl text-black-300 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                            Affordable installations, service and repairs for roller shutters, garage doors and trellidoors. We focus on workmanship you can trust and service that puts your safety first.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+                            <a href="tel:+27723632664" class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-green-600 text-white font-semibold text-sm sm:text-base hover:bg-green-500 transition-all duration-300 shadow-lg shadow-green-600/20 hover:shadow-green-500/30 btn-press">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                                Call Danie
+                            </a>
+                            <a href="https://wa.me/27651095887" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-black-800 text-white font-semibold text-sm sm:text-base border-2 border-black-700 hover:border-green-500 hover:text-green-400 transition-all duration-300 btn-press">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                </svg>
+                                WhatsApp Chaan
+                            </a>
+                        </div>
+
+                        <!-- Trust Bar -->
+                        <div class="flex flex-wrap gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start" aria-label="Business highlights">
+                            <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-black-300 bg-black-800 px-3 sm:px-4 py-2 rounded-full shadow-sm border border-black-700">
+                                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Free Quotations
+                            </span>
+                            <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-black-300 bg-black-800 px-3 sm:px-4 py-2 rounded-full shadow-sm border border-black-700">
+                                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                                Fast Turnaround
+                            </span>
+                            <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-black-300 bg-black-800 px-3 sm:px-4 py-2 rounded-full shadow-sm border border-black-700">
+                                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                </svg>
+                                Trusted Workmanship
+                            </span>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-black-400 bg-black-900/50 inline-block px-3 sm:px-4 py-2 rounded-lg border border-black-800">
+                            <strong class="text-green-400">Important:</strong> We only service garage and roller doors.
+                        </p>
+                    </div>
+
+                    <!-- Right Card -->
+                    <aside class="bg-black-900 rounded-2xl shadow-2xl shadow-green-900/10 border border-black-800 overflow-hidden card-hover" aria-label="Owner and business promise">
+                        <div class="relative">
+                            <img class="w-full h-48 sm:h-64 lg:h-80 object-cover" src="images/Chaan Julian Lennon.jpeg" alt="Chaan Lennon from JC Roller Shutter Worx" />
+                            <div class="absolute inset-0 bg-black-950/20"></div>
+                        </div>
+                        <div class="p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6">
+                            <h2 class="font-space font-bold text-xl sm:text-2xl text-white">Why Clients Choose Us</h2>
+                            <ul class="space-y-2 sm:space-y-3">
+                                <li class="flex items-start gap-3 text-black-300 text-sm sm:text-base">
+                                    <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Professional installations and dependable repairs
+                                </li>
+                                <li class="flex items-start gap-3 text-black-300 text-sm sm:text-base">
+                                    <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    General maintenance and security installations
+                                </li>
+                                <li class="flex items-start gap-3 text-black-300 text-sm sm:text-base">
+                                    <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Clear communication and honest pricing
+                                </li>
+                                <li class="flex items-start gap-3 text-black-300 text-sm sm:text-base">
+                                    <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Free quotations before work starts
+                                </li>
+                            </ul>
+                            <div class="pt-3 sm:pt-4 border-t border-black-800">
+                                <p class="text-black-400 italic leading-relaxed text-sm sm:text-base">
+                                    "We do more than fix doors. We help protect homes, businesses and the peace of mind behind them."
+                                </p>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="py-12 sm:py-16 lg:py-28 bg-black-950" id="services">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16">
+                    <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-900/50 text-green-400 text-xs font-bold uppercase tracking-wider mb-4 border border-green-700/50">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                        What We Do
+                    </p>
+                    <h2 class="font-space font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white">Our Services</h2>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                    <article class="group relative bg-black-900 rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 hover:bg-black-800 hover:shadow-xl hover:shadow-green-600/10 transition-all duration-300 border border-black-800 hover:border-green-700/50 card-hover">
+                        <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-green-600 text-white flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-green-500 transition-colors duration-300">
+                            <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-space font-bold text-lg sm:text-xl text-white mb-2 sm:mb-3">Installations</h3>
+                        <p class="text-black-400 leading-relaxed text-sm sm:text-base">New roller shutter, garage door and trellidoor installations for residential and commercial sites.</p>
+                    </article>
+
+                    <article class="group relative bg-black-900 rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 hover:bg-black-800 hover:shadow-xl hover:shadow-green-600/10 transition-all duration-300 border border-black-800 hover:border-green-700/50 card-hover">
+                        <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-green-600 text-white flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-green-500 transition-colors duration-300">
+                            <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-space font-bold text-lg sm:text-xl text-white mb-2 sm:mb-3">Repairs</h3>
+                        <p class="text-black-400 leading-relaxed text-sm sm:text-base">Fast, practical repairs for roller and garage doors to restore safe and smooth daily operation.</p>
+                    </article>
+
+                    <article class="group relative bg-black-900 rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 hover:bg-black-800 hover:shadow-xl hover:shadow-green-600/10 transition-all duration-300 border border-black-800 hover:border-green-700/50 card-hover sm:col-span-2 lg:col-span-1">
+                        <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-green-600 text-white flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-green-500 transition-colors duration-300">
+                            <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-space font-bold text-lg sm:text-xl text-white mb-2 sm:mb-3">Maintenance</h3>
+                        <p class="text-black-400 leading-relaxed text-sm sm:text-base">Preventive maintenance and security-focused servicing that extends lifespan and reduces breakdowns.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="py-12 sm:py-16 lg:py-28 bg-black-900" id="projects">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16">
+                    <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-900/50 text-green-400 text-xs font-bold uppercase tracking-wider mb-4 border border-green-700/50">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                        Recent Work
+                    </p>
+                    <h2 class="font-space font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white">Our Roller Shutter Door Work</h2>
+                </div>
+
+                <div class="relative max-w-5xl mx-auto" aria-label="Project photo carousel">
+                    <div class="relative overflow-hidden rounded-xl sm:rounded-2xl bg-black-950 shadow-2xl shadow-green-900/10 border border-black-800">
+                        <div class="project-viewport overflow-hidden">
+                            <div class="project-track" id="project-track">
+                                <figure class="project-photo">
+                                    <img src="images/projects/roller-01.jpeg" alt="Closed commercial roller shutter door" loading="lazy" class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover" />
+                                    <figcaption class="px-4 sm:px-6 py-3 sm:py-4 bg-black-950 border-t border-black-800">
+                                        <p class="text-black-300 text-sm sm:text-base"><strong class="text-green-400">Reason:</strong> New installation for stronger daily security and controlled access.</p>
+                                    </figcaption>
+                                </figure>
+                                <figure class="project-photo">
+                                    <img src="images/projects/roller-02.jpeg" alt="Perforated roller shutter in parking area" loading="lazy" class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover" />
+                                    <figcaption class="px-4 sm:px-6 py-3 sm:py-4 bg-black-950 border-t border-black-800">
+                                        <p class="text-black-300 text-sm sm:text-base"><strong class="text-green-400">Reason:</strong> Security upgrade while still allowing airflow and visibility.</p>
+                                    </figcaption>
+                                </figure>
+                                <figure class="project-photo">
+                                    <img src="images/projects/roller-03.jpeg" alt="Before and after roller door replacement" loading="lazy" class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover" />
+                                    <figcaption class="px-4 sm:px-6 py-3 sm:py-4 bg-black-950 border-t border-black-800">
+                                        <p class="text-black-300 text-sm sm:text-base"><strong class="text-green-400">Reason:</strong> Replaced worn damaged door to improve safety and smooth operation.</p>
+                                    </figcaption>
+                                </figure>
+                                <figure class="project-photo">
+                                    <img src="images/projects/roller-04.jpeg" alt="Before and after roller shutter repair" loading="lazy" class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover" />
+                                    <figcaption class="px-4 sm:px-6 py-3 sm:py-4 bg-black-950 border-t border-black-800">
+                                        <p class="text-black-300 text-sm sm:text-base"><strong class="text-green-400">Reason:</strong> Emergency repair after impact damage to restore secure closure.</p>
+                                    </figcaption>
+                                </figure>
+                                <figure class="project-photo">
+                                    <img src="images/projects/roller-05.jpeg" alt="New galvanized roller shutter door" loading="lazy" class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover" />
+                                    <figcaption class="px-4 sm:px-6 py-3 sm:py-4 bg-black-950 border-t border-black-800">
+                                        <p class="text-black-300 text-sm sm:text-base"><strong class="text-green-400">Reason:</strong> Heavy-duty shutter fitted for long-term protection and reliability.</p>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+
+                        <!-- Carousel Controls -->
+                        <button class="carousel-btn prev absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-black-800/90 backdrop-blur-sm shadow-lg text-green-400 hover:bg-green-600 hover:text-white transition-all duration-300 flex items-center justify-center z-10 border border-black-700 btn-press" type="button" aria-label="Previous project photo">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <button class="carousel-btn next absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-black-800/90 backdrop-blur-sm shadow-lg text-green-400 hover:bg-green-600 hover:text-white transition-all duration-300 flex items-center justify-center z-10 border border-black-700 btn-press" type="button" aria-label="Next project photo">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+
+                        <!-- Dots -->
+                        <div class="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="carousel-dots">
+                            <button class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-500 transition-all duration-300" data-index="0" aria-label="Go to slide 1"></button>
+                            <button class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-black-600 transition-all duration-300" data-index="1" aria-label="Go to slide 2"></button>
+                            <button class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-black-600 transition-all duration-300" data-index="2" aria-label="Go to slide 3"></button>
+                            <button class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-black-600 transition-all duration-300" data-index="3" aria-label="Go to slide 4"></button>
+                            <button class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-black-600 transition-all duration-300" data-index="4" aria-label="Go to slide 5"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="py-12 sm:py-16 lg:py-28 bg-black-950" id="pricing">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16">
+                    <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-900/50 text-green-400 text-xs font-bold uppercase tracking-wider mb-4 border border-green-700/50">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                        Transparent Costs
+                    </p>
+                    <h2 class="font-space font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white">Price Details in Private</h2>
+                    <p class="mt-3 sm:mt-4 text-base sm:text-lg text-black-400">All jobs include a free quotation. Final price depends on door size, site condition and required parts.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                    <article class="group bg-black-900 rounded-xl sm:rounded-2xl p-5 sm:p-6 hover:bg-black-800 hover:shadow-xl hover:shadow-green-600/10 transition-all duration-300 border border-black-800 hover:border-green-700/50 card-hover">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-green-600 text-white flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-green-500 transition-colors duration-300">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-space font-bold text-base sm:text-lg text-white mb-1 sm:mb-2">Installations</h3>
+                        <p class="text-xs sm:text-sm text-black-500">Based on opening size, material type and site preparation.</p>
+                    </article>
+
+                    <article class="group bg-black-900 rounded-xl sm:rounded-2xl p-5 sm:p-6 hover:bg-black-800 hover:shadow-xl hover:shadow-green-600/10 transition-all duration-300 border border-black-800 hover:border-green-700/50 card-hover">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-green-600 text-white flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-green-500 transition-colors duration-300">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-space font-bold text-base sm:text-lg text-white mb-1 sm:mb-2">Repairs</h3>
+                        <p class="text-xs sm:text-sm text-black-500">Based on damage level, parts needed and labour time.</p>
+                    </article>
+
+                    <article class="group bg-black-900 rounded-xl sm:rounded-2xl p-5 sm:p-6 hover:bg-black-800 hover:shadow-xl hover:shadow-green-600/10 transition-all duration-300 border border-black-800 hover:border-green-700/50 card-hover">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-green-600 text-white flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-green-500 transition-colors duration-300">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-space font-bold text-base sm:text-lg text-white mb-1 sm:mb-2">Maintenance</h3>
+                        <p class="text-xs sm:text-sm text-black-500">Best for preventive servicing and safety checks.</p>
+                    </article>
+
+                    <article class="group bg-black-900 rounded-xl sm:rounded-2xl p-5 sm:p-6 hover:bg-black-800 hover:shadow-xl hover:shadow-blue-600/10 transition-all duration-300 border border-black-800 hover:border-blue-700/50 card-hover">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-blue-600 text-white flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-blue-500 transition-colors duration-300">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-space font-bold text-base sm:text-lg text-white mb-1 sm:mb-2">Emergency / After-Hours</h3>
+                        <p class="text-xs sm:text-sm text-black-500">Priority support for urgent roller and garage door issues.</p>
+                    </article>
+                </div>
+
+                <p class="mt-6 sm:mt-10 text-center text-xs sm:text-sm text-black-500 bg-black-900 inline-block px-4 sm:px-6 py-2 sm:py-3 rounded-full mx-auto block w-fit border border-black-800">
+                    <strong class="text-green-400">Note:</strong> We only service garage and roller doors.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-12 sm:py-16 lg:py-28 bg-black-900 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+                    <div class="space-y-6 sm:space-y-8 text-center lg:text-left">
+                        <div>
+                            <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-900/50 text-green-400 text-xs font-bold uppercase tracking-wider mb-4 border border-green-700/50">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                                Get In Touch
+                            </p>
+                            <h2 class="font-space font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white">Contact JC Roller Shutter Worx</h2>
+                        </div>
+                        <p class="text-base sm:text-lg text-black-300">Reach out for a free quotation.</p>
+                        <a href="https://wa.me/27651095887" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-green-600 text-white font-semibold text-sm sm:text-base hover:bg-green-500 transition-all duration-300 shadow-lg shadow-green-600/30 btn-press">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            Send Message
+                        </a>
+                    </div>
+
+                    <div class="space-y-4 sm:space-y-6 bg-black-950 rounded-xl sm:rounded-2xl p-5 sm:p-8 border border-black-800">
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-green-900/50 flex items-center justify-center flex-shrink-0 border border-green-800/50">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="font-semibold text-white text-sm sm:text-base">Danie Kroezen</p>
+                                <a href="tel:+27723632664" class="text-green-400 hover:text-green-300 transition-colors text-base sm:text-lg block truncate">+27 72 363 2664</a>
+                                <span class="block text-xs sm:text-sm text-black-500 mt-0.5">(Call)</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-green-900/50 flex items-center justify-center flex-shrink-0 border border-green-800/50">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                </svg>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="font-semibold text-white text-sm sm:text-base">Chaan Lennon</p>
+                                <a href="https://wa.me/27651095887" target="_blank" rel="noopener" class="text-green-400 hover:text-green-300 transition-colors text-base sm:text-lg block truncate">+27 65 109 5887</a>
+                                <span class="block text-xs sm:text-sm text-black-500 mt-0.5">(WhatsApp only)</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-blue-900/50 flex items-center justify-center flex-shrink-0 border border-blue-800/50">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="font-semibold text-white text-sm sm:text-base">Email</p>
+                                <a href="mailto:jc.rollershutterworx@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors text-base sm:text-lg block truncate">jc.rollershutterworx@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black-950 text-black-400 py-8 sm:py-12 border-t border-black-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
+                <div class="text-center md:text-left">
+                    <p class="text-white font-medium text-sm sm:text-base">JC Roller Shutter Worx</p>
+                    <p class="text-xs sm:text-sm mt-1">Trusted workmanship. Real support. Lasting protection. | 2026 South Africa</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+                    <p class="text-xs sm:text-sm font-semibold text-black-500 uppercase tracking-wider">Follow Us</p>
+                    <div class="flex gap-3">
+                        <a href="https://www.facebook.com/share/18yNdfyAxa/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-black-900 text-black-300 hover:bg-blue-600 hover:text-white transition-all duration-300 border border-black-800 text-xs sm:text-sm" aria-label="Follow us on Facebook">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                            <span class="font-medium">Facebook</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@jc.rollershutterw?_r=1&_t=ZS-95tIklKx9zY" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-black-900 text-black-300 hover:bg-green-600 hover:text-white transition-all duration-300 border border-black-800 text-xs sm:text-sm" aria-label="Follow us on TikTok">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.96 1.96-.07 3.56-1.89 3.56-3.85.01-3.94 0-7.87.01-11.81z"/>
+                            </svg>
+                            <span class="font-medium">TikTok</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('open');
+            mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+            menuIconOpen.classList.toggle('hidden', isOpen);
+            menuIconClose.classList.toggle('hidden', !isOpen);
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            });
+        });
+
+        // Carousel
+        const track = document.getElementById('project-track');
+        const slides = track.querySelectorAll('.project-photo');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
+        const dotsContainer = document.getElementById('carousel-dots');
+        const dots = dotsContainer.querySelectorAll('button');
+
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+        let autoPlayInterval;
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.remove('bg-black-600');
+                    dot.classList.add('bg-green-500');
+                } else {
+                    dot.classList.remove('bg-green-500');
+                    dot.classList.add('bg-black-600');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoPlay();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoPlay();
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+                resetAutoPlay();
+            });
+        });
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+        }
+
+        startAutoPlay();
+
+        // Pause carousel on hover
+        const carouselContainer = document.querySelector('.project-viewport');
+        carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        carouselContainer.addEventListener('mouseleave', startAutoPlay);
+
+        // Touch swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+                resetAutoPlay();
+            }
+        }
+    </script>
+</body>
+</html>

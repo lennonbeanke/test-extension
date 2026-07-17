@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid Gallery</title>
+<base target="_blank">
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    background: linear-gradient(135deg, #fdfdfe 0%, #00b611 50%, #1edcd8 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeInDown 0.6s ease-out;
+  }
+
+  .header h1 {
+    font-size: 42px;
+    color: #fff;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  .header p {
+    color: rgba(255,255,255,0.7);
+    font-size: 16px;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Filter Bar */
+  .filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    animation: fadeInDown 0.6s ease-out 0.1s both;
+  }
+
+  .filter-btn {
+    padding: 10px 24px;
+    border: 2px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .filter-btn:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.4);
+    transform: translateY(-2px);
+  }
+
+  .filter-btn.active {
+    background: #b5a64a;
+    border-color: #339c69;
+    box-shadow: 0 4px 15px rgb(87, 213, 255);
+  }
+
+  .filter-btn:focus {
+    outline: 2px solid #d1fd00;
+    outline-offset: 2px;
+  }
+
+  /* GRID CONTAINER */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 220px;
+    gap: 18px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* GRID ITEMS */
+  .item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  .item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    z-index: 10;
+  }
+
+  .item.hidden {
+    display: none;
+  }
+
+  .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+
+  .item:hover img {
+    transform: scale(1.1);
+  }
+
+  /* Overlay */
+  .item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 60px 20px 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: #fff;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+  }
+
+  .item:hover .item-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .item-overlay h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+
+  .item-overlay p {
+    font-size: 13px;
+    opacity: 0.8;
+  }
+
+  .item-overlay .category-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: rgba(151, 170, 255, 0.8);
+    border-radius: 12px;
+    font-size: 11px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Loading Skeleton */
+  .skeleton {
+    background: linear-gradient(90deg, #0000ff 25%, rgb(255, 0, 0) 50%, #1aff0b 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* CUSTOM LAYOUT */
+  .item1 {
+    grid-row: span 2;
+  }
+
+  .item4 {
+    grid-row: span 2;
+  }
+
+  .item5 {
+    grid-column: span 2;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .lightbox.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    animation: zoomIn 0.3s ease;
+  }
+
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .lightbox-content img {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    display: block;
+  }
+
+  .lightbox-info {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #fff;
+  }
+
+  .lightbox-info h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  .lightbox-info p {
+    font-size: 14px;
+    opacity: 0.7;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .lightbox-close:hover {
+    background: rgba(255,255,255,0.1);
+    transform: rotate(90deg);
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox-nav:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .lightbox-prev {
+    left: 20px;
+  }
+
+  .lightbox-next {
+    right: 20px;
+  }
+
+  .lightbox-counter {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 14px;
+    opacity: 0.7;
+    background: rgba(255,255,255,0.1);
+    padding: 5px 15px;
+    border-radius: 20px;
+  }
+
+  /* Image Counter */
+  .image-counter {
+    text-align: center;
+    margin-top: 30px;
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #1a1a2e;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+  }
+
+  /* RESPONSIVE DESIGN */
+  @media (max-width: 900px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 180px;
+    }
+
+    .item5 {
+      grid-column: span 1;
+    }
+
+    .header h1 {
+      font-size: 32px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    body {
+      padding: 20px 10px;
+    }
+
+    .grid-container {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 250px;
+      gap: 12px;
+    }
+
+    .item1,
+    .item4 {
+      grid-row: span 1;
+    }
+
+    .header h1 {
+      font-size: 26px;
+    }
+
+    .lightbox-nav {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+    }
+
+    .lightbox-prev {
+      left: 10px;
+    }
+
+    .lightbox-next {
+      right: 10px;
+    }
+  }
+</style>
+
+<body>
+
+  <div class="header">
+    <h1>📸 CSS Grid Gallery</h1>
+    <p>Click any image to view in fullscreen</p>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="nature">🌿 Nature</button>
+    <button class="filter-btn" data-filter="architecture">🏛️ Architecture</button>
+    <button class="filter-btn" data-filter="food">🍽️ Food</button>
+    <button class="filter-btn" data-filter="travel">✈️ Travel</button>
+  </div>
+
+  <div class="grid-container" id="gallery">
+    <div class="item item1" data-category="nature" data-index="0">
+      <img src="https://picsum.photos/600/800?1" alt="Misty Mountain Lake" loading="lazy">
+      <div class="item-overlay">
+        <span class="category-tag">Nature</span>
+        <h3>Misty Mountain Lake</h3>
+        <p>Serene waters reflecting the morning mist</p>
+      </div>
+    </div>
+
+    <div class="item item2" data-category="architecture" data-index="1">
+      <img src="https://picsum.photos/600/400?2" alt="Modern Living Space" loading="lazy">
+      <div class="item-overlay">
+        <span class="category-tag">Architecture</span>
+        <h3>Modern Living Space</h3>
+        <p>Minimalist interior design</p>
+      </div>
+    </div>
+
+    <div class="item item3" data-category="food" data-index="2">
+      <img src="https://picsum.photos/600/400?3" alt="Gourmet Feast" loading="lazy">
+      <div class="item-overlay">
+        <span class="category-tag">Food</span>
+        <h3>Gourmet Feast</h3>
+        <p>Artfully plated culinary masterpiece</p>
+      </div>
+    </div>
+
+    <div class="item item4" data-category="architecture" data-index="3">
+      <img src="https://picsum.photos/600/800?4" alt="Historic Red Door" loading="lazy">
+      <div class="item-overlay">
+        <span class="category-tag">Architecture</span>
+        <h3>Historic Red Door</h3>
+        <p>Classic European architecture</p>
+      </div>
+    </div>
+
+    <div class="item item5" data-category="travel" data-index="4">
+      <img src="https://picsum.photos/600/400?5" alt="City Skyline" loading="lazy">
+      <div class="item-overlay">
+        <span class="category-tag">Travel</span>
+        <h3>City Skyline</h3>
+        <p>Urban exploration at dusk</p>
+      </div>
+    </div>
+
+    <div class="item item6" data-category="nature" data-index="5">
+      <img src="https://picsum.photos/600/400?6" alt="Coastal Sunset" loading="lazy">
+      <div class="item-overlay">
+        <span class="category-tag">Nature</span>
+        <h3>Coastal Sunset</h3>
+        <p>Golden hour by the ocean</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="image-counter" id="image-counter">Showing 6 of 6 images</div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">&times;</button>
+    <div class="lightbox-counter" id="lightbox-counter">1 / 6</div>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#10094;</button>
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightbox-img">
+      <div class="lightbox-info">
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-desc"></p>
+      </div>
+    </div>
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">&#10095;</button>
+  </div>
+
+  <script>
+    // ================= GALLERY DATA =================
+    const galleryData = [
+      {
+        src: "https://picsum.photos/1200/1600?1",
+        thumb: "https://picsum.photos/600/800?1",
+        title: "Misty Mountain Lake",
+        desc: "Serene waters reflecting the morning mist",
+        category: "nature"
+      },
+      {
+        src: "https://picsum.photos/1200/800?2",
+        thumb: "https://picsum.photos/600/400?2",
+        title: "Modern Living Space",
+        desc: "Minimalist interior design with natural lighting",
+        category: "architecture"
+      },
+      {
+        src: "https://picsum.photos/1200/800?3",
+        thumb: "https://picsum.photos/600/400?3",
+        title: "Gourmet Feast",
+        desc: "Artfully plated culinary masterpiece",
+        category: "food"
+      },
+      {
+        src: "https://picsum.photos/1200/1600?4",
+        thumb: "https://picsum.photos/600/800?4",
+        title: "Historic Red Door",
+        desc: "Classic European architecture details",
+        category: "architecture"
+      },
+      {
+        src: "https://picsum.photos/1200/800?5",
+        thumb: "https://picsum.photos/600/400?5",
+        title: "City Skyline",
+        desc: "Urban exploration at golden hour",
+        category: "travel"
+      },
+      {
+        src: "https://picsum.photos/1200/800?6",
+        thumb: "https://picsum.photos/600/400?6",
+        title: "Coastal Sunset",
+        desc: "Golden hour by the ocean waves",
+        category: "nature"
+      }
+    ];
+
+    // ================= FILTER FUNCTIONALITY =================
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.item');
+    const counterEl = document.getElementById('image-counter');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        let visibleCount = 0;
+
+        items.forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.classList.remove('hidden');
+            item.style.animation = 'none';
+            item.offsetHeight;
+            item.style.animation = 'fadeInUp 0.5s ease forwards';
+            visibleCount++;
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+
+        counterEl.textContent = `Showing ${visibleCount} of ${items.length} images`;
+      });
+    });
+
+    // ================= LIGHTBOX =================
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxDesc = document.getElementById('lightbox-desc');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+
+    let currentIndex = 0;
+    let visibleItems = Array.from(items);
+
+    function updateVisibleItems() {
+      visibleItems = Array.from(items).filter(item => !item.classList.contains('hidden'));
+    }
+
+    function openLightbox(index) {
+      updateVisibleItems();
+      currentIndex = index;
+      const data = galleryData[visibleItems[currentIndex].dataset.index];
+
+      lightboxImg.src = data.src;
+      lightboxImg.alt = data.title;
+      lightboxTitle.textContent = data.title;
+      lightboxDesc.textContent = data.desc;
+      lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+      const data = galleryData[visibleItems[currentIndex].dataset.index];
+      lightboxImg.src = data.src;
+      lightboxImg.alt = data.title;
+      lightboxTitle.textContent = data.title;
+      lightboxDesc.textContent = data.desc;
+      lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % visibleItems.length;
+      const data = galleryData[visibleItems[currentIndex].dataset.index];
+      lightboxImg.src = data.src;
+      lightboxImg.alt = data.title;
+      lightboxTitle.textContent = data.title;
+      lightboxDesc.textContent = data.desc;
+      lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+    }
+
+    // Click handlers
+    items.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        updateVisibleItems();
+        const visibleIndex = visibleItems.indexOf(item);
+        openLightbox(visibleIndex);
+      });
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+    lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+
+    // Close on background click
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+
+      switch(e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          showPrev();
+          break;
+        case 'ArrowRight':
+          showNext();
+          break;
+      }
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    lightbox.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          showNext();
+        } else {
+          showPrev();
+        }
+      }
+    }
+
+    // ================= IMAGE LOADING =================
+    const images = document.querySelectorAll('.item img');
+    images.forEach(img => {
+      img.addEventListener('load', function() {
+        this.parentElement.classList.remove('skeleton');
+      });
+    });
+  </script>
+
+</body>
+</html>

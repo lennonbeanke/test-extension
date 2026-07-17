@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Beanke Lennon | Full Stack Developer</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Portfolio of Beanke Lennon, Full Stack Developer specializing in frontend and backend development.">
+
+    <!-- Icons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<base target="_blank">
+</head>
+
+<style>
+/* ================= ROOT ================= */
+:root {
+    --bg: #111;
+    --text: #fff;
+    --accent: #b70000;
+    --card: #1a1a1a;
+}
+
+/* Light Mode */
+.light-mode {
+    --bg: #fff;
+    --text: #000;
+    --card: #f4f4f4;
+}
+
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================= BODY ================= */
+body {
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+    overflow-x: hidden;
+}
+
+/* ================= LOADER ================= */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+#loader::after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--card);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+#loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ================= CURSOR ================= */
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.1s ease;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+@media (min-width: 769px) {
+    .cursor {
+        display: block;
+    }
+}
+
+.cursor.hover {
+    transform: translate(-50%, -50%) scale(2);
+    background: rgba(183, 0, 0, 0.1);
+}
+
+/* ================= PROGRESS BAR ================= */
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--accent);
+    width: 0%;
+    z-index: 1001;
+    transition: width 0.1s ease-out;
+}
+
+/* ================= HEADER ================= */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+    z-index: 1000;
+    transition: background 0.3s;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.navbar a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: var(--text);
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: var(--accent);
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+    background: none;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+    margin-left: 10px;
+}
+
+#theme-toggle:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* Mobile Menu Icon */
+#menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+    color: var(--text);
+}
+
+/* ================= SECTIONS ================= */
+section {
+    min-height: 100vh;
+    padding: 100px 10%;
+}
+
+/* ================= HOME ================= */
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.home-content {
+    max-width: 600px;
+}
+
+.home-content h1 {
+    font-size: 40px;
+}
+
+.home-content h1 span {
+    color: var(--accent);
+}
+
+.home-content h3 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.home-img img {
+    width: 250px;
+    border-radius: 50%;
+    border: 4px solid var(--accent);
+    object-fit: cover;
+}
+
+/* ================= BUTTON ================= */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(183, 0, 0, 0.4);
+}
+
+/* ================= SOCIAL ICONS ================= */
+.social-icons a {
+    margin-right: 15px;
+    font-size: 24px;
+    color: var(--text);
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.social-icons a:hover {
+    color: var(--accent);
+    transform: scale(1.2) translateY(-3px);
+}
+
+/* ================= ABOUT ================= */
+.about {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-img img {
+    width: 250px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.about-content h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.about-content span {
+    color: var(--accent);
+}
+
+.about-content p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/* ================= SERVICES ================= */
+.services .heading {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.services-box {
+    background: var(--card);
+    padding: 30px 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.services-box i {
+    font-size: 40px;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.services-box h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.services-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.light-mode .services-box:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* ================= PROJECTS ================= */
+.projects .heading {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.project-box {
+    background: var(--card);
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.3s;
+    overflow: hidden;
+}
+
+.project-box img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.project-box:hover img {
+    transform: scale(1.05);
+}
+
+.project-box h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.project-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.light-mode .project-box:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* ================= CONTACT ================= */
+.contact .heading {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+.contact form {
+    max-width: 700px;
+    margin: auto;
+}
+
+.input-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.input-box input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--card);
+    outline: none;
+    border-radius: 5px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.input-box input:focus,
+textarea:focus {
+    border-color: var(--accent);
+}
+
+textarea {
+    resize: none;
+    margin-bottom: 10px;
+}
+
+/* Form status message */
+.form-status {
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.form-status.success {
+    background: #d4edda;
+    color: #155724;
+    display: block;
+}
+
+.form-status.error {
+    background: #f8d7da;
+    color: #721c24;
+    display: block;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    text-align: center;
+    padding: 30px 20px;
+    background: var(--card);
+}
+
+.footer .social-icons {
+    margin-bottom: 15px;
+}
+
+.footer .list {
+    list-style: none;
+    margin: 15px 0;
+    padding: 0;
+}
+
+.footer .list li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.footer .list a {
+    text-decoration: none;
+    color: var(--text);
+    transition: 0.3s;
+}
+
+.footer .list a:hover {
+    color: var(--accent);
+}
+
+.footer p {
+    margin-top: 15px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* ================= ANIMATIONS ================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Typing cursor */
+.text-animation span {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.text-animation span::after {
+    content: "|";
+    animation: blink 0.7s infinite;
+    color: var(--accent);
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ================= SCROLL BAR ================= */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #900;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+    .home {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 120px;
+    }
+
+    .home-content h1 {
+        font-size: 32px;
+    }
+
+    .home-img {
+        margin-top: 30px;
+    }
+
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-img {
+        margin-bottom: 20px;
+    }
+
+    #menu-icon {
+        display: block;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 70px;
+        right: -100%;
+        background: var(--bg);
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 10px 0 0 10px;
+        box-shadow: -5px 5px 15px rgba(0,0,0,0.3);
+        transition: right 0.3s ease;
+    }
+
+    .navbar.active {
+        right: 0;
+    }
+
+    .navbar a {
+        margin: 10px 0;
+        font-size: 18px;
+    }
+
+    #theme-toggle {
+        margin: 10px 0 0 0;
+        align-self: flex-start;
+    }
+
+    .input-box {
+        flex-direction: column;
+    }
+
+    section {
+        padding: 80px 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-content h1 {
+        font-size: 28px;
+    }
+
+    .home-content h3 {
+        font-size: 18px;
+    }
+
+    .home-img img {
+        width: 200px;
+    }
+}
+</style>
+<body>
+
+<!-- 🔥 LOADER -->
+<div id="loader"></div>
+
+<!-- 🔥 CURSOR -->
+<div class="cursor"></div>
+
+<!-- 🔥 PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <a href="#home" class="logo">Beanke <span>Lennon</span></a>
+
+    <i class="bx bx-menu" id="menu-icon"></i>
+
+    <nav class="navbar">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="btn" title="Toggle Theme">🌙</button>
+    </nav>
+</header>
+
+<!-- ================= HOME ================= -->
+<section class="home reveal" id="home">
+    <div class="home-content">
+        <h1>Hi, It's <span>Beanke</span></h1>
+
+        <h3 class="text-animation">
+        I'm a <span></span>
+        </h3>
+
+        <p>
+        I am a passionate Full Stack Developer who builds modern, responsive, and user-friendly web applications using HTML, CSS, JavaScript, and backend technologies.
+        </p>
+
+        <div class="social-icons">
+            <a href="https://github.com/" target="_blank"><i class="bx bxl-github"></i></a>
+            <a href="https://linkedin.com/" target="_blank"><i class="bx bxl-linkedin-square"></i></a>
+            <a href="#"><i class="bx bxl-instagram-alt"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+        </div>
+
+        <div class="btn-group">
+            <a href="#contact" class="btn">Hire Me</a>
+            <a href="#contact" class="btn">Contact</a>
+        </div>
+    </div>
+
+    <div class="home-img">
+        <img src="Bea.Profile.jpeg" alt="Profile Image">
+    </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about reveal" id="about">
+    <div class="about-img">
+        <img src="Bea.Profile.jpeg" alt="About Image">
+    </div>
+
+    <div class="about-content">
+        <h2 class="heading">About <span>Me</span></h2>
+
+        <p>
+            I am a friendly and passionate developer with experience in frontend and backend development. I enjoy building clean and efficient websites and solving real-world problems through code.
+        </p>
+
+        <a href="Cv .html" class="btn">View CV</a>
+    </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="services reveal" id="services">
+    <h2 class="heading">Services</h2>
+
+    <div class="services-container">
+
+        <div class="services-box">
+            <i class="bx bxl-figma"></i>
+            <h4>UI/UX Design</h4>
+            <p>Creating clean and user-friendly designs focused on usability and experience.</p>
+        </div>
+
+        <div class="services-box">
+            <i class="bx bx-code"></i>
+            <h4>Frontend Development</h4>
+            <p>Building responsive websites using HTML, CSS, and JavaScript.</p>
+        </div>
+
+        <div class="services-box">
+            <i class="bx bx-server"></i>
+            <h4>Backend Development</h4>
+            <p>Developing APIs, databases, and server-side logic.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section class="projects reveal" id="projects">
+    <h2 class="heading">Projects</h2>
+
+    <div class="projects-container">
+
+        <div class="project-box">
+            <img src="https://picsum.photos/400/300?1" alt="Project One">
+            <h4>Project One</h4>
+            <p>Portfolio website using HTML, CSS, JS.</p>
+        </div>
+
+        <div class="project-box">
+            <img src="https://picsum.photos/400/300?2" alt="Project Two">
+            <h4>Project Two</h4>
+            <p>Responsive landing page design.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact reveal" id="contact">
+    <h2 class="heading">Contact <span>Me</span></h2>
+
+    <form id="contact-form">
+        <div class="form-status" id="form-status"></div>
+
+        <div class="input-box">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+        </div>
+
+        <div class="input-box">
+            <input type="tel" id="phone" placeholder="Phone Number">
+            <input type="text" id="subject" placeholder="Subject">
+        </div>
+
+        <textarea id="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+
+        <input type="submit" value="Send Message" class="btn">
+    </form>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+
+    <div class="social-icons">
+        <a href="https://github.com/" target="_blank"><i class="bx bxl-github"></i></a>
+        <a href="https://linkedin.com/" target="_blank"><i class="bx bxl-linkedin-square"></i></a>
+        <a href="#"><i class="bx bxl-instagram-alt"></i></a>
+        <a href="#"><i class="bx bxl-twitter"></i></a>
+    </div>
+
+    <ul class="list">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <p>&copy; 2026 Beanke Lennon | All Rights Reserved</p>
+
+</footer>
+
+<!-- ================= SCRIPTS ================= -->
+<script>
+// ================= LOADER =================
+window.addEventListener('load', function() {
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+        loader.classList.add('hidden');
+    }, 800);
+});
+
+// ================= CUSTOM CURSOR =================
+const cursor = document.querySelector('.cursor');
+
+if (window.innerWidth > 768) {
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    // Add hover effect to interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .btn, input, textarea');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+}
+
+// ================= PROGRESS BAR =================
+window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (scrollTop / scrollHeight) * 100;
+    document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+// ================= THEME TOGGLE =================
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Check for saved theme preference
+if (localStorage.getItem('theme') === 'light') {
+    body.classList.add('light-mode');
+    themeToggle.textContent = '☀️';
+}
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+
+    if (body.classList.contains('light-mode')) {
+        localStorage.setItem('theme', 'light');
+        themeToggle.textContent = '☀️';
+    } else {
+        localStorage.setItem('theme', 'dark');
+        themeToggle.textContent = '🌙';
+    }
+});
+
+// ================= TYPING ANIMATION =================
+const textSpan = document.querySelector('.text-animation span');
+const words = ['Full Stack Developer', 'Frontend Developer', 'Backend Developer', 'UI/UX Designer'];
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typeEffect() {
+    const currentWord = words[wordIndex];
+
+    if (isDeleting) {
+        textSpan.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        textSpan.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+    }
+
+    let typeSpeed = isDeleting ? 50 : 100;
+
+    if (!isDeleting && charIndex === currentWord.length) {
+        typeSpeed = 2000; // Pause at end of word
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        typeSpeed = 500; // Pause before typing next word
+    }
+
+    setTimeout(typeEffect, typeSpeed);
+}
+
+// Start typing animation after loader finishes
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(typeEffect, 1000);
+});
+
+// ================= MOBILE MENU =================
+const menuIcon = document.getElementById('menu-icon');
+const navbar = document.querySelector('.navbar');
+
+menuIcon.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+    menuIcon.classList.toggle('bx-x');
+    menuIcon.classList.toggle('bx-menu');
+});
+
+// Close menu when clicking a link
+const navLinks = document.querySelectorAll('.navbar a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navbar.classList.remove('active');
+        menuIcon.classList.remove('bx-x');
+        menuIcon.classList.add('bx-menu');
+    });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!navbar.contains(e.target) && !menuIcon.contains(e.target)) {
+        navbar.classList.remove('active');
+        menuIcon.classList.remove('bx-x');
+        menuIcon.classList.add('bx-menu');
+    }
+});
+
+// ================= SCROLL REVEAL =================
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// ================= ACTIVE NAV LINK ON SCROLL =================
+const sections = document.querySelectorAll('section');
+const navItems = document.querySelectorAll('.navbar a');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+
+        if (scrollY >= sectionTop - 200) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === '#' + current) {
+            item.classList.add('active');
+        }
+    });
+});
+
+// ================= SMOOTH SCROLL =================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// ================= FORM HANDLING =================
+const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+
+    // Basic validation
+    if (!name || !email || !message) {
+        formStatus.textContent = 'Please fill in all required fields.';
+        formStatus.className = 'form-status error';
+        return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        formStatus.textContent = 'Please enter a valid email address.';
+        formStatus.className = 'form-status error';
+        return;
+    }
+
+    // Simulate form submission (replace with actual backend endpoint)
+    formStatus.textContent = 'Sending message...';
+    formStatus.className = 'form-status';
+    formStatus.style.display = 'block';
+
+    setTimeout(() => {
+        formStatus.textContent = 'Message sent successfully! I will get back to you soon.';
+        formStatus.className = 'form-status success';
+        contactForm.reset();
+
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+            formStatus.style.display = 'none';
+        }, 5000);
+    }, 1500);
+
+    // For actual implementation, you would send data to a server:
+    /*
+    fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, subject, message })
+    })
+    .then(response => response.json())
+    .then(data => {
+        formStatus.textContent = 'Message sent successfully!';
+        formStatus.className = 'form-status success';
+        contactForm.reset();
+    })
+    .catch(error => {
+        formStatus.textContent = 'Something went wrong. Please try again.';
+        formStatus.className = 'form-status error';
+    });
+    */
+});
+
+// ================= HEADER BACKGROUND ON SCROLL =================
+const header = document.querySelector('.header');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+    } else {
+        header.style.boxShadow = 'none';
+    }
+});
+</script>
+
+</body>
+</html>

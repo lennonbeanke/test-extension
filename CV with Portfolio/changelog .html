@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog Component</title>
+<base target="_blank">
+</head>
+<style>
+  /* Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Body */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  /* Container */
+  .changelog {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 20px;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+    animation: slideUp 0.6s ease-out;
+    backdrop-filter: blur(10px);
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Header */
+  .changelog-header {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .changelog-header h1 {
+    font-size: 36px;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .changelog-header .subtitle {
+    color: #888;
+    font-size: 15px;
+  }
+
+  /* Stats Bar */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 25px 0 30px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 12px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat .number {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f3460;
+  }
+
+  .stat .label {
+    font-size: 12px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Filter Buttons */
+  .filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 8px 18px;
+    border: 2px solid #e0e0e0;
+    background: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover {
+    border-color: #0f3460;
+    color: #0f3460;
+    transform: translateY(-2px);
+  }
+
+  .filter-btn.active {
+    background: #0f3460;
+    color: #fff;
+    border-color: #0f3460;
+    box-shadow: 0 4px 15px rgba(15, 52, 96, 0.3);
+  }
+
+  .filter-btn:focus {
+    outline: 2px solid #0f3460;
+    outline-offset: 2px;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    margin-left: 30px;
+    border-left: 3px solid #e0e0e0;
+    padding-bottom: 10px;
+  }
+
+  /* Each Entry */
+  .entry {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 30px;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: fadeInLeft 0.5s ease forwards;
+    transition: all 0.3s ease;
+  }
+
+  .entry:nth-child(1) { animation-delay: 0.1s; }
+  .entry:nth-child(2) { animation-delay: 0.2s; }
+  .entry:nth-child(3) { animation-delay: 0.3s; }
+  .entry:nth-child(4) { animation-delay: 0.4s; }
+  .entry:nth-child(5) { animation-delay: 0.5s; }
+  .entry:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes fadeInLeft {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .entry:hover {
+    transform: translateX(5px);
+  }
+
+  .entry.hidden {
+    display: none;
+  }
+
+  /* Dot */
+  .dot {
+    position: absolute;
+    left: -10px;
+    top: 6px;
+    width: 18px;
+    height: 18px;
+    background: #0f3460;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 3px #0f3460;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+
+  .entry:hover .dot {
+    transform: scale(1.3);
+    box-shadow: 0 0 0 4px #0f3460, 0 0 20px rgba(15, 52, 96, 0.4);
+  }
+
+  /* Dot colors by type */
+  .entry.feature .dot {
+    background: #4CAF50;
+    box-shadow: 0 0 0 3px #4CAF50;
+  }
+  .entry.feature:hover .dot {
+    box-shadow: 0 0 0 4px #4CAF50, 0 0 20px rgba(76, 175, 80, 0.4);
+  }
+
+  .entry.bugfix .dot {
+    background: #f44336;
+    box-shadow: 0 0 0 3px #f44336;
+  }
+  .entry.bugfix:hover .dot {
+    box-shadow: 0 0 0 4px #f44336, 0 0 20px rgba(244, 67, 54, 0.4);
+  }
+
+  .entry.improvement .dot {
+    background: #FF9800;
+    box-shadow: 0 0 0 3px #FF9800;
+  }
+  .entry.improvement:hover .dot {
+    box-shadow: 0 0 0 4px #FF9800, 0 0 20px rgba(255, 152, 0, 0.4);
+  }
+
+  .entry.major .dot {
+    background: #9C27B0;
+    box-shadow: 0 0 0 3px #9C27B0;
+  }
+  .entry.major:hover .dot {
+    box-shadow: 0 0 0 4px #9C27B0, 0 0 20px rgba(156, 39, 176, 0.4);
+  }
+
+  /* Content Card */
+  .content {
+    background: #fff;
+    padding: 20px 25px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .entry:hover .content {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border-color: #ddd;
+  }
+
+  /* Type Badge */
+  .type-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .type-badge.feature {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  .type-badge.bugfix {
+    background: #ffebee;
+    color: #c62828;
+  }
+
+  .type-badge.improvement {
+    background: #fff3e0;
+    color: #ef6c00;
+  }
+
+  .type-badge.major {
+    background: #f3e5f5;
+    color: #7b1fa2;
+  }
+
+  /* Version Title */
+  .content h3 {
+    margin-bottom: 8px;
+    color: #1a1a2e;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  /* Description */
+  .content p {
+    margin-bottom: 12px;
+    color: #555;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* Feature List */
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+
+  .feature-list li {
+    padding: 4px 0 4px 24px;
+    position: relative;
+    color: #555;
+    font-size: 14px;
+  }
+
+  .feature-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+    font-weight: bold;
+  }
+
+  /* Date */
+  .date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #999;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .date::before {
+    content: "📅";
+    font-size: 12px;
+  }
+
+  /* Expand/Collapse */
+  .expand-btn {
+    background: none;
+    border: none;
+    color: #0f3460;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 0;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+  }
+
+  .expand-btn:hover {
+    color: #667eea;
+  }
+
+  .expand-btn .arrow {
+    transition: transform 0.3s ease;
+    display: inline-block;
+  }
+
+  .expand-btn.expanded .arrow {
+    transform: rotate(180deg);
+  }
+
+  .details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+
+  .details.show {
+    max-height: 500px;
+    opacity: 1;
+  }
+
+  /* Scroll to top */
+  .scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    background: #0f3460;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(15, 52, 96, 0.4);
+    transition: all 0.3s ease;
+    z-index: 100;
+  }
+
+  .scroll-top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(15, 52, 96, 0.5);
+  }
+
+  .scroll-top.show {
+    display: flex;
+  }
+
+  /* No results */
+  .no-results {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+    display: none;
+  }
+
+  .no-results.show {
+    display: block;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    body {
+      padding: 20px 10px;
+    }
+
+    .changelog {
+      padding: 25px 20px;
+      border-radius: 16px;
+    }
+
+    .changelog-header h1 {
+      font-size: 28px;
+    }
+
+    .stats-bar {
+      gap: 15px;
+    }
+
+    .timeline {
+      margin-left: 15px;
+    }
+
+    .entry {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .content {
+      padding: 15px 18px;
+    }
+
+    .content h3 {
+      font-size: 18px;
+    }
+  }
+</style>
+
+<body>
+
+  <main class="changelog">
+
+    <div class="changelog-header">
+      <h1>📋 Changelog</h1>
+      <p class="subtitle">Track all updates, features, and improvements</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="number" id="total-versions">6</div>
+        <div class="label">Versions</div>
+      </div>
+      <div class="stat">
+        <div class="number" id="total-features">12</div>
+        <div class="label">Features</div>
+      </div>
+      <div class="stat">
+        <div class="number" id="total-fixes">5</div>
+        <div class="label">Fixes</div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All Updates</button>
+      <button class="filter-btn" data-filter="feature">✨ Features</button>
+      <button class="filter-btn" data-filter="bugfix">🐛 Bug Fixes</button>
+      <button class="filter-btn" data-filter="improvement">⚡ Improvements</button>
+      <button class="filter-btn" data-filter="major">🚀 Major</button>
+    </div>
+
+    <div class="timeline" id="timeline">
+
+      <div class="entry major" data-type="major">
+        <div class="dot"></div>
+        <div class="content">
+          <span class="type-badge major">Major Release</span>
+          <h3>Version 2.0</h3>
+          <p>Major update with redesigned UI and comprehensive bug fixes.</p>
+          <button class="expand-btn" onclick="toggleDetails(this)">
+            Show Details <span class="arrow">▼</span>
+          </button>
+          <div class="details">
+            <ul class="feature-list">
+              <li>Complete UI redesign with modern aesthetics</li>
+              <li>New dark mode support</li>
+              <li>Improved performance by 40%</li>
+              <li>Added real-time collaboration features</li>
+              <li>Enhanced security with 2FA</li>
+            </ul>
+          </div>
+          <div class="date">June 15, 2026</div>
+        </div>
+      </div>
+
+      <div class="entry feature" data-type="feature">
+        <div class="dot"></div>
+        <div class="content">
+          <span class="type-badge feature">New Feature</span>
+          <h3>Version 1.3</h3>
+          <p>Added export functionality and custom themes support.</p>
+          <button class="expand-btn" onclick="toggleDetails(this)">
+            Show Details <span class="arrow">▼</span>
+          </button>
+          <div class="details">
+            <ul class="feature-list">
+              <li>Export data to PDF and CSV formats</li>
+              <li>Custom theme builder with live preview</li>
+              <li>Keyboard shortcuts for power users</li>
+            </ul>
+          </div>
+          <div class="date">May 28, 2026</div>
+        </div>
+      </div>
+
+      <div class="entry bugfix" data-type="bugfix">
+        <div class="dot"></div>
+        <div class="content">
+          <span class="type-badge bugfix">Bug Fix</span>
+          <h3>Version 1.2.1</h3>
+          <p>Fixed critical login issue and data sync problems.</p>
+          <button class="expand-btn" onclick="toggleDetails(this)">
+            Show Details <span class="arrow">▼</span>
+          </button>
+          <div class="details">
+            <ul class="feature-list">
+              <li>Fixed OAuth login redirect loop</li>
+              <li>Resolved data sync conflicts on slow connections</li>
+              <li>Fixed memory leak in dashboard component</li>
+            </ul>
+          </div>
+          <div class="date">May 15, 2026</div>
+        </div>
+      </div>
+
+      <div class="entry improvement" data-type="improvement">
+        <div class="dot"></div>
+        <div class="content">
+          <span class="type-badge improvement">Improvement</span>
+          <h3>Version 1.2</h3>
+          <p>Improved performance and added new dashboard widgets.</p>
+          <button class="expand-btn" onclick="toggleDetails(this)">
+            Show Details <span class="arrow">▼</span>
+          </button>
+          <div class="details">
+            <ul class="feature-list">
+              <li>Dashboard load time reduced by 60%</li>
+              <li>New analytics widget with charts</li>
+              <li>Improved mobile responsiveness</li>
+              <li>Better error handling and user feedback</li>
+            </ul>
+          </div>
+          <div class="date">May 5, 2026</div>
+        </div>
+      </div>
+
+      <div class="entry feature" data-type="feature">
+        <div class="dot"></div>
+        <div class="content">
+          <span class="type-badge feature">New Feature</span>
+          <h3>Version 1.1</h3>
+          <p>Added new features and improved overall performance.</p>
+          <button class="expand-btn" onclick="toggleDetails(this)">
+            Show Details <span class="arrow">▼</span>
+          </button>
+          <div class="details">
+            <ul class="feature-list">
+              <li>Dark mode toggle</li>
+              <li>Search functionality across all pages</li>
+              <li>Notification system with preferences</li>
+              <li>Drag and drop file uploads</li>
+            </ul>
+          </div>
+          <div class="date">April 20, 2026</div>
+        </div>
+      </div>
+
+      <div class="entry major" data-type="major">
+        <div class="dot"></div>
+        <div class="content">
+          <span class="type-badge major">Initial Release</span>
+          <h3>Version 1.0</h3>
+          <p>Initial release of the project with core functionality.</p>
+          <button class="expand-btn" onclick="toggleDetails(this)">
+            Show Details <span class="arrow">▼</span>
+          </button>
+          <div class="details">
+            <ul class="feature-list">
+              <li>User authentication and profiles</li>
+              <li>Dashboard with basic analytics</li>
+              <li>File management system</li>
+              <li>Email notifications</li>
+              <li>Responsive design for all devices</li>
+            </ul>
+          </div>
+          <div class="date">April 1, 2026</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="no-results" id="no-results">
+      <p>📭 No updates found for this category.</p>
+    </div>
+
+  </main>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" id="scroll-top" onclick="scrollToTop()" aria-label="Scroll to top">
+    ↑
+  </button>
+
+  <script>
+    // ================= FILTER FUNCTIONALITY =================
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const entries = document.querySelectorAll('.entry');
+    const noResults = document.getElementById('no-results');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        let visibleCount = 0;
+
+        entries.forEach(entry => {
+          if (filter === 'all' || entry.dataset.type === filter) {
+            entry.classList.remove('hidden');
+            // Re-trigger animation
+            entry.style.animation = 'none';
+            entry.offsetHeight; // Trigger reflow
+            entry.style.animation = `fadeInLeft 0.5s ease forwards`;
+            entry.style.animationDelay = `${visibleCount * 0.1}s`;
+            visibleCount++;
+          } else {
+            entry.classList.add('hidden');
+          }
+        });
+
+        // Show/hide no results message
+        if (visibleCount === 0) {
+          noResults.classList.add('show');
+        } else {
+          noResults.classList.remove('show');
+        }
+      });
+    });
+
+    // ================= EXPAND/COLLAPSE DETAILS =================
+
+    function toggleDetails(btn) {
+      const details = btn.nextElementSibling;
+      const isExpanded = btn.classList.contains('expanded');
+
+      if (isExpanded) {
+        btn.classList.remove('expanded');
+        btn.innerHTML = 'Show Details <span class="arrow">▼</span>';
+        details.classList.remove('show');
+      } else {
+        btn.classList.add('expanded');
+        btn.innerHTML = 'Hide Details <span class="arrow">▲</span>';
+        details.classList.add('show');
+      }
+    }
+
+    // ================= SCROLL TO TOP =================
+
+    const scrollTopBtn = document.getElementById('scroll-top');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('show');
+      } else {
+        scrollTopBtn.classList.remove('show');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // ================= INTERSECTION OBSERVER FOR ANIMATIONS =================
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const entryObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateX(0)';
+        }
+      });
+    }, observerOptions);
+
+    entries.forEach(entry => entryObserver.observe(entry));
+
+    // ================= KEYBOARD NAVIGATION =================
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        // Collapse all expanded details
+        document.querySelectorAll('.expand-btn.expanded').forEach(btn => {
+          toggleDetails(btn);
+        });
+      }
+    });
+
+    // ================= UPDATE STATS =================
+
+    function updateStats() {
+      const visibleEntries = document.querySelectorAll('.entry:not(.hidden)');
+      document.getElementById('total-versions').textContent = visibleEntries.length;
+
+      let features = 0;
+      let fixes = 0;
+
+      visibleEntries.forEach(entry => {
+        const type = entry.dataset.type;
+        if (type === 'feature') features++;
+        if (type === 'bugfix') fixes++;
+        if (type === 'major') {
+          features += 2;
+          fixes += 1;
+        }
+        if (type === 'improvement') features += 1;
+      });
+
+      document.getElementById('total-features').textContent = features;
+      document.getElementById('total-fixes').textContent = fixes;
+    }
+
+    // Update stats when filtering
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        setTimeout(updateStats, 100);
+      });
+    });
+  </script>
+
+</body>
+</html>

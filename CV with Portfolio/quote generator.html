@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quote Generator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<base target="_blank">
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ff2ffb 0%, #a828ff 30%, #e27036 60%, #ff48d1 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+  }
+
+  /* Background particles */
+  .bg-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .bg-particles .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 107, 53, 0.08);
+    animation: float 15s infinite ease-in-out;
+  }
+
+  .bg-particles .particle:nth-child(1) {
+    width: 200px; height: 200px;
+    top: 10%; left: 10%;
+    animation-delay: 0s;
+  }
+
+  .bg-particles .particle:nth-child(2) {
+    width: 150px; height: 150px;
+    top: 60%; right: 15%;
+    animation-delay: 3s;
+  }
+
+  .bg-particles .particle:nth-child(3) {
+    width: 100px; height: 100px;
+    bottom: 20%; left: 30%;
+    animation-delay: 6s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(20px, -30px) scale(1.1); }
+    66% { transform: translate(-15px, 15px) scale(0.9); }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 700px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+    animation: fadeInDown 0.6s ease-out;
+  }
+
+  .header h1 {
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .header p {
+    color: rgba(255,255,255,0.6);
+    font-size: 15px;
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Category Filter */
+  .filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    animation: fadeInDown 0.6s ease-out 0.1s both;
+  }
+
+  .filter-btn {
+    padding: 8px 18px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.8);
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .filter-btn:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+  }
+
+  .filter-btn.active {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), #f71eda);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(253, 88, 230, 0.3);
+  }
+
+  /* Quote Card */
+  .quote-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 50px 40px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    text-align: center;
+    position: relative;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+    transition: transform 0.3s ease;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .quote-card:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Quote Icon */
+  .quote-icon {
+    font-size: 48px;
+    color: rgb(0, 253, 131);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  /* Quote Text */
+  .quote-text {
+    font-size: 24px;
+    color: #fff;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-weight: 400;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quote-text.typing {
+    animation: typing 0.5s ease-out;
+  }
+
+  @keyframes typing {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Author */
+  .quote-author {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  .quote-author::before {
+    content: "— ";
+  }
+
+  /* Category Tag */
+  .quote-category {
+    display: inline-block;
+    padding: 4px 14px;
+    background: rgba(255, 107, 53, 0.2);
+    color: #c900ff;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 30px;
+  }
+
+  /* Action Buttons */
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .action-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+
+  .action-btn:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .btn-new {
+    background: linear-gradient(135deg, #ff40e5, #7e0080);
+    color: #fff;
+  }
+
+  .btn-new:hover {
+    background: linear-gradient(135deg, #ff02d3, #7a03ab);
+    box-shadow: 0 8px 25px rgb(250, 0, 255);
+  }
+
+  .btn-copy {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .btn-copy:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-copy.copied {
+    background: #e600ff;
+    border-color: #ff00c9;
+  }
+
+  .btn-tweet {
+    background: #ff19b4;
+    color: #fff;
+  }
+
+  .btn-tweet:hover {
+    background: #dd00ff;
+    box-shadow: 0 8px 25px rgb(186, 83, 245);
+  }
+
+  /* Toast Notification */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Stats */
+  .stats {
+    text-align: center;
+    margin-top: 25px;
+    color: rgba(255,255,255,0.4);
+    font-size: 13px;
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .header h1 {
+      font-size: 28px;
+    }
+
+    .quote-card {
+      padding: 35px 25px;
+    }
+
+    .quote-text {
+      font-size: 20px;
+    }
+
+    .quote-icon {
+      font-size: 36px;
+    }
+
+    .actions {
+      gap: 10px;
+    }
+
+    .action-btn {
+      padding: 10px 18px;
+      font-size: 13px;
+    }
+  }
+</style>
+
+<body>
+
+  <div class="bg-particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>💬 Quote Generator</h1>
+      <p>Discover wisdom from great minds</p>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-category="all">All</button>
+      <button class="filter-btn" data-category="motivation">Motivation</button>
+      <button class="filter-btn" data-category="life">Life</button>
+      <button class="filter-btn" data-category="success">Success</button>
+      <button class="filter-btn" data-category="wisdom">Wisdom</button>
+      <button class="filter-btn" data-category="happiness">Happiness</button>
+    </div>
+
+    <!-- Quote Card -->
+    <div class="quote-card" id="quote-card">
+      <i class="fas fa-quote-left quote-icon"></i>
+      <div class="quote-text" id="quote-text">Click "New Quote" to get inspired</div>
+      <div class="quote-author" id="quote-author"></div>
+      <div class="quote-category" id="quote-category">Select a category</div>
+
+      <div class="actions">
+        <button class="action-btn btn-new" id="btn-new" onclick="generateQuote()">
+          <i class="fas fa-sync-alt"></i> New Quote
+        </button>
+        <button class="action-btn btn-copy" id="btn-copy" onclick="copyQuote()">
+          <i class="fas fa-copy"></i> Copy
+        </button>
+        <button class="action-btn btn-tweet" onclick="tweetQuote()">
+          <i class="fab fa-twitter"></i> Tweet
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats" id="stats">
+      <span id="quote-count">0</span> quotes in collection
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">Quote copied to clipboard!</div>
+
+  <script>
+    // ================= QUOTES DATABASE =================
+    const quotes = [
+      { text: "The only way to do great work is to love what you do.", author: "Steve Jobs", category: "motivation" },
+      { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt", category: "motivation" },
+      { text: "It always seems impossible until it's done.", author: "Nelson Mandela", category: "motivation" },
+      { text: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson", category: "motivation" },
+      { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt", category: "motivation" },
+      { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill", category: "motivation" },
+      { text: "What lies behind us and what lies before us are tiny matters compared to what lies within us.", author: "Ralph Waldo Emerson", category: "motivation" },
+      { text: "The best time to plant a tree was 20 years ago. The second best time is now.", author: "Chinese Proverb", category: "motivation" },
+      { text: "Your limitation—it's only your imagination.", author: "Unknown", category: "motivation" },
+      { text: "Push yourself, because no one else is going to do it for you.", author: "Unknown", category: "motivation" },
+
+      { text: "In the middle of difficulty lies opportunity.", author: "Albert Einstein", category: "life" },
+      { text: "Life is what happens when you're busy making other plans.", author: "John Lennon", category: "life" },
+      { text: "The purpose of our lives is to be happy.", author: "Dalai Lama", category: "life" },
+      { text: "Get busy living or get busy dying.", author: "Stephen King", category: "life" },
+      { text: "You only live once, but if you do it right, once is enough.", author: "Mae West", category: "life" },
+      { text: "Many of life's failures are people who did not realize how close they were to success when they gave up.", author: "Thomas Edison", category: "life" },
+      { text: "If you want to live a happy life, tie it to a goal, not to people or things.", author: "Albert Einstein", category: "life" },
+      { text: "Never let the fear of striking out keep you from playing the game.", author: "Babe Ruth", category: "life" },
+      { text: "Money and success don't change people; they merely amplify what is already there.", author: "Will Smith", category: "life" },
+      { text: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs", category: "life" },
+
+      { text: "Success usually comes to those who are too busy to be looking for it.", author: "Henry David Thoreau", category: "success" },
+      { text: "Don't be afraid to give up the good to go for the great.", author: "John D. Rockefeller", category: "success" },
+      { text: "I find that the harder I work, the more luck I seem to have.", author: "Thomas Jefferson", category: "success" },
+      { text: "There are no secrets to success. It is the result of preparation, hard work, and learning from failure.", author: "Colin Powell", category: "success" },
+      { text: "If you really look closely, most overnight successes took a long time.", author: "Steve Jobs", category: "success" },
+      { text: "The real test is not whether you avoid this failure, because you won't. It's whether you let it harden or shame you into inaction, or whether you learn from it.", author: "Barack Obama", category: "success" },
+      { text: "The only place where success comes before work is in the dictionary.", author: "Vidal Sassoon", category: "success" },
+      { text: "If you are not willing to risk the usual, you will have to settle for the ordinary.", author: "Jim Rohn", category: "success" },
+      { text: "Stop chasing the money and start chasing the passion.", author: "Tony Hsieh", category: "success" },
+      { text: "All progress takes place outside the comfort zone.", author: "Michael John Bobak", category: "success" },
+
+      { text: "The only true wisdom is in knowing you know nothing.", author: "Socrates", category: "wisdom" },
+      { text: "Wisdom is not a product of schooling but of the lifelong attempt to acquire it.", author: "Albert Einstein", category: "wisdom" },
+      { text: "The fool doth think he is wise, but the wise man knows himself to be a fool.", author: "William Shakespeare", category: "wisdom" },
+      { text: "It is better to remain silent at the risk of being thought a fool, than to talk and remove all doubt of it.", author: "Maurice Switzer", category: "wisdom" },
+      { text: "Knowing yourself is the beginning of all wisdom.", author: "Aristotle", category: "wisdom" },
+      { text: "The only way to do great work is to love what you do.", author: "Steve Jobs", category: "wisdom" },
+      { text: "Turn your wounds into wisdom.", author: "Oprah Winfrey", category: "wisdom" },
+      { text: "The journey of a thousand miles begins with one step.", author: "Lao Tzu", category: "wisdom" },
+      { text: "He who has a why to live can bear almost any how.", author: "Friedrich Nietzsche", category: "wisdom" },
+      { text: "The unexamined life is not worth living.", author: "Socrates", category: "wisdom" },
+
+      { text: "Happiness is not something ready made. It comes from your own actions.", author: "Dalai Lama", category: "happiness" },
+      { text: "For every minute you are angry you lose sixty seconds of happiness.", author: "Ralph Waldo Emerson", category: "happiness" },
+      { text: "Happiness depends upon ourselves.", author: "Aristotle", category: "happiness" },
+      { text: "The most important thing is to enjoy your life—to be happy—it's all that matters.", author: "Audrey Hepburn", category: "happiness" },
+      { text: "Count your age by friends, not years. Count your life by smiles, not tears.", author: "John Lennon", category: "happiness" },
+      { text: "The happiness of your life depends upon the quality of your thoughts.", author: "Marcus Aurelius", category: "happiness" },
+      { text: "Be happy for this moment. This moment is your life.", author: "Omar Khayyam", category: "happiness" },
+      { text: "Happiness is when what you think, what you say, and what you do are in harmony.", author: "Mahatma Gandhi", category: "happiness" },
+      { text: "The best way to cheer yourself is to try to cheer someone else up.", author: "Mark Twain", category: "happiness" },
+      { text: "If you want to be happy, be.", author: "Leo Tolstoy", category: "happiness" }
+    ];
+
+    // ================= STATE =================
+    let currentCategory = 'all';
+    let currentQuote = null;
+    let usedQuotes = new Set();
+
+    // ================= DOM ELEMENTS =================
+    const quoteText = document.getElementById('quote-text');
+    const quoteAuthor = document.getElementById('quote-author');
+    const quoteCategory = document.getElementById('quote-category');
+    const quoteCount = document.getElementById('quote-count');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const toast = document.getElementById('toast');
+
+    // ================= FILTER =================
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.dataset.category;
+        usedQuotes.clear();
+        generateQuote();
+      });
+    });
+
+    // ================= GET FILTERED QUOTES =================
+    function getFilteredQuotes() {
+      if (currentCategory === 'all') {
+        return quotes;
+      }
+      return quotes.filter(q => q.category === currentCategory);
+    }
+
+    // ================= GENERATE QUOTE =================
+    function generateQuote() {
+      const filtered = getFilteredQuotes();
+
+      // Reset if all quotes used
+      if (usedQuotes.size >= filtered.length) {
+        usedQuotes.clear();
+      }
+
+      // Get available quotes
+      const available = filtered.filter((q, index) => !usedQuotes.has(index));
+      if (available.length === 0) {
+        usedQuotes.clear();
+        generateQuote();
+        return;
+      }
+
+      // Pick random
+      const randomIndex = Math.floor(Math.random() * available.length);
+      const quote = available[randomIndex];
+      const originalIndex = filtered.indexOf(quote);
+      usedQuotes.add(originalIndex);
+
+      currentQuote = quote;
+
+      // Animate
+      quoteText.classList.remove('typing');
+      void quoteText.offsetWidth; // trigger reflow
+      quoteText.classList.add('typing');
+
+      quoteText.textContent = quote.text;
+      quoteAuthor.textContent = quote.author;
+      quoteCategory.textContent = quote.category;
+
+      // Update stats
+      quoteCount.textContent = filtered.length;
+    }
+
+    // ================= COPY QUOTE =================
+    function copyQuote() {
+      if (!currentQuote) return;
+
+      const textToCopy = `"${currentQuote.text}" — ${currentQuote.author}`;
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        showToast('Quote copied to clipboard!');
+
+        // Visual feedback on button
+        const btn = document.getElementById('btn-copy');
+        const originalHTML = btn.innerHTML;
+        btn.classList.add('copied');
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied';
+
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = originalHTML;
+        }, 2000);
+      }).catch(() => {
+        showToast('Failed to copy quote');
+      });
+    }
+
+    // ================= TWEET QUOTE =================
+    function tweetQuote() {
+      if (!currentQuote) return;
+
+      const text = encodeURIComponent(`"${currentQuote.text}" — ${currentQuote.author}`);
+      const url = `https://twitter.com/intent/tweet?text=${text}`;
+      window.open(url, '_blank');
+    }
+
+    // ================= TOAST =================
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    // ================= KEYBOARD =================
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' || e.code === 'Enter') {
+        e.preventDefault();
+        generateQuote();
+      }
+    });
+
+    // ================= INIT =================
+    quoteCount.textContent = quotes.length;
+    generateQuote();
+  </script>
+
+</body>
+</html>

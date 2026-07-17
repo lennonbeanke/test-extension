@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Beanke Lennon | Full Stack Developer</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Portfolio of Beanke Lennon, Full Stack Developer specializing in frontend and backend development.">
+
+    <!-- Icons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+<style>
+/* ================= ROOT ================= */
+:root {
+    --bg: #111;
+    --text: #fff;
+    --accent: #b70000;
+    --card: #1a1a1a;
+}
+
+/* Light Mode */
+.light-mode {
+    --bg: #fff;
+    --text: #000;
+    --card: #f4f4f4;
+}
+
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================= BODY ================= */
+body {
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* ================= HEADER ================= */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.navbar a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: var(--text);
+    transition: 0.3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: var(--accent);
+}
+
+/* Mobile Menu Icon */
+#menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+/* ================= SECTIONS ================= */
+section {
+    min-height: 100vh;
+    padding: 100px 10%;
+}
+
+/* ================= HOME ================= */
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.home-content {
+    max-width: 600px;
+}
+
+.home-content h1 {
+    font-size: 40px;
+}
+
+.home-content h1 span {
+    color: var(--accent);
+}
+
+.home-content h3 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.home-img img {
+    width: 250px;
+    border-radius: 50%;
+    border: 4px solid var(--accent);
+}
+
+/* ================= BUTTON ================= */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background: var(--accent);
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+/* ================= SOCIAL ICONS ================= */
+.social-icons a {
+    margin-right: 10px;
+    font-size: 24px;
+    color: var(--text);
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--accent);
+    transform: scale(1.2);
+}
+
+/* ================= ABOUT ================= */
+.about {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-img img {
+    width: 250px;
+    border-radius: 10px;
+}
+
+.about-content h2 {
+    font-size: 30px;
+}
+
+.about-content span {
+    color: var(--accent);
+}
+
+/* ================= SERVICES ================= */
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.services-box {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.services-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* ================= PROJECTS ================= */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.project-box {
+    background: var(--card);
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.project-box img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.project-box:hover {
+    transform: scale(1.05);
+}
+
+/* ================= CONTACT ================= */
+.contact form {
+    max-width: 700px;
+    margin: auto;
+}
+
+.input-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.input-box input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: none;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--card);
+}
+
+.footer .list {
+    list-style: none;
+    margin: 10px 0;
+}
+
+.footer .list li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.footer .list a {
+    text-decoration: none;
+    color: var(--text);
+}
+
+/* ================= ANIMATIONS ================= */
+section {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: slideUp 1s forwards;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typing cursor */
+.text-animation span::after {
+    content: "|";
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ================= SCROLL BAR ================= */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+    .home {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #menu-icon {
+        display: block;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: var(--bg);
+        width: 200px;
+        display: none;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .navbar.active {
+        display: flex;
+    }
+
+    .navbar a {
+        margin: 10px 0;
+    }
+}
+</style>
+<body>
+
+<!-- 🔥 LOADER -->
+<div id="loader"></div>
+
+<!-- 🔥 CURSOR -->
+<div class="cursor"></div>
+
+<!-- 🔥 PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <a href="#home" class="logo">Beanke <span>Lennon</span></a>
+
+    <i class="bx bx-menu" id="menu-icon"></i>
+
+    <nav class="navbar">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="btn">🌙</button>
+    </nav>
+</header>
+
+<!-- ================= HOME ================= -->
+<section class="home reveal" id="home">
+    <div class="home-content">
+        <h1>Hi, It's <span>Beanke</span></h1>
+
+        <h3 class="text-animation">
+        I'm a <span></span>
+        </h3>
+
+        <p>
+        I am a passionate Full Stack Developer who builds modern, responsive, and user-friendly web applications using HTML, CSS, JavaScript, and backend technologies.
+        </p>
+
+        <div class="social-icons">
+            <a href="https://github.com/" target="_blank"><i class="bx bxl-github"></i></a>
+            <a href="https://linkedin.com/" target="_blank"><i class="bx bxl-linkedin-square"></i></a>
+            <a href="#"><i class="bx bxl-instagram-alt"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+        </div>
+
+        <div class="btn-group">
+            <a href="#" class="btn">Hire Me</a>
+            <a href="#contact" class="btn">Contact</a>
+        </div>
+    </div>
+
+    <div class="home-img">
+        <img src="Portfolio Bea.jpeg" alt="Profile Image">
+    </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about reveal" id="about">
+    <div class="about-img">
+        <img src="profile.png" alt="">
+    </div>
+
+    <div class="about-content">
+        <h2 class="heading">About <span>Me</span></h2>
+
+        <p>
+            I am a friendly and passionate developer with experience in frontend and backend development. I enjoy building clean and efficient websites and solving real-world problems through code.
+        </p>
+
+        <a href="Beanke Lennon Cv 2026.html" class="btn">View</a>
+    </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="services reveal" id="services">
+    <h2 class="heading">Services</h2>
+
+    <div class="services-container">
+
+        <div class="services-box">
+            <i class="bx bxl-figma"></i>
+            <h4>UI/UX Design</h4>
+            <p>Creating clean and user-friendly designs focused on usability and experience.</p>
+        </div>
+
+        <div class="services-box">
+            <i class="bx bx-code"></i>
+            <h4>Frontend Development</h4>
+            <p>Building responsive websites using HTML, CSS, and JavaScript.</p>
+        </div>
+
+        <div class="services-box">
+            <i class="bx bx-server"></i>
+            <h4>Backend Development</h4>
+            <p>Developing APIs, databases, and server-side logic.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section class="projects reveal" id="projects">
+    <h2 class="heading">Projects</h2>
+
+    <div class="projects-container">
+
+        <div class="project-box">
+            <img src="project1.png" alt="">
+            <h4>Project One</h4>
+            <p>Portfolio website using HTML, CSS, JS.</p>
+        </div>
+
+        <div class="project-box">
+            <img src="project2.png" alt="">
+            <h4>Project Two</h4>
+            <p>Responsive landing page design.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact reveal" id="contact">
+    <h2 class="heading">Contact <span>Me</span></h2>
+
+    <form>
+        <div class="input-box">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email" required>
+        </div>
+
+        <div class="input-box">
+            <input type="number" placeholder="Phone Number">
+            <input type="text" placeholder="Subject">
+        </div>
+
+        <textarea id="message" cols="30" rows="10" placeholder="Your Message"></textarea>
+
+        <input type="submit" value="Send Message" class="btn">
+    </form>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+
+    <div class="social-icons">
+        <a href="#"><i class="bx bxl-github"></i></a>
+        <a href="#"><i class="bx bxl-linkedin-square"></i></a>
+        <a href="#"><i class="bx bxl-instagram-alt"></i></a>
+        <a href="#"><i class="bx bxl-twitter"></i></a>
+    </div>
+
+    <ul class="list">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <p>© 2026 Beanke Lennon | All Rights Reserved</p>
+
+</footer>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="Script.js"></script>
+
+</body>
+</html>

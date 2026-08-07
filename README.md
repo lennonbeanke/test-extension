@@ -15,3 +15,5 @@ Personal Portfolio: https://roadmap.sh/projects/portfolio-website
 Changelog Component: https://roadmap.sh/projects/changelog-component
 
 Testimonial Cards: https://roadmap.sh/projects/testimonial-cards
+
+Image Grid Layout: https://roadmap.sh/projects/image-grid

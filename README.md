@@ -11,3 +11,5 @@ Contact Form: https://roadmap.sh/projects/contact-form
 Photo Showcase: https://roadmap.sh/projects/photo-showcase
 
 Personal Portfolio: https://roadmap.sh/projects/portfolio-website
+
+Changelog Component: https://roadmap.sh/projects/changelog-component

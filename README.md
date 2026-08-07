@@ -19,3 +19,5 @@ Testimonial Cards: https://roadmap.sh/projects/testimonial-cards
 Image Grid Layout: https://roadmap.sh/projects/image-grid
 
 Pricing Cards: https://roadmap.sh/projects/pricing-cards
+
+Theme Switcher with CSS Variables: https://roadmap.sh/projects/theme-switcher

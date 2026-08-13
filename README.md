@@ -20,7 +20,6 @@ Image Grid Layout: https://roadmap.sh/projects/image-grid
 
 Pricing Cards: https://roadmap.sh/projects/pricing-cards
 
-String Formatter: https://roadmap.sh/projects/js-string-formatter
 Theme Switcher with CSS Variables: https://roadmap.sh/projects/theme-switcher
 
 Greeting Builder: https://roadmap.sh/projects/js-greeting-builder
@@ -28,3 +27,5 @@ Greeting Builder: https://roadmap.sh/projects/js-greeting-builder
 Temperature Converter: https://roadmap.sh/projects/js-temperature-converter
 
 Number Checker: https://roadmap.sh/projects/js-number-checker
+
+String Formatter: https://roadmap.sh/projects/js-string-formatter

@@ -21,3 +21,5 @@ Image Grid Layout: https://roadmap.sh/projects/image-grid
 Pricing Cards: https://roadmap.sh/projects/pricing-cards
 
 Theme Switcher with CSS Variables: https://roadmap.sh/projects/theme-switcher
+
+Greeting Builder: https://roadmap.sh/projects/js-greeting-builder

@@ -29,3 +29,5 @@ Temperature Converter: https://roadmap.sh/projects/js-temperature-converter
 Number Checker: https://roadmap.sh/projects/js-number-checker
 
 String Formatter: https://roadmap.sh/projects/js-string-formatter
+
+Price Calculator: https://roadmap.sh/projects/js-price-calculator

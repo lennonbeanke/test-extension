@@ -25,3 +25,5 @@ Theme Switcher with CSS Variables: https://roadmap.sh/projects/theme-switcher
 Greeting Builder: https://roadmap.sh/projects/js-greeting-builder
 
 Temperature Converter: https://roadmap.sh/projects/js-temperature-converter
+
+Number Checker: https://roadmap.sh/projects/js-number-checker
